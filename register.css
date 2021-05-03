@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'star_jediregular';
+    src: url('starjedi-webfont.woff2') format('woff2'),
+        url('starjedi-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+    @font-face {
+        font-family: 'star_jedi_hollowregular';
+        src: url('starjhol-webfont.woff2') format('woff2'),
+             url('starjhol-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    
+    }
+    
+    body {background-image: url('coruscant.gif'); background-size: contain; background-repeat: repeat;}
+    h1{text-align:center; color: yellow; font-size: 75px; font-family: 'star_jedi_hollowregular'; }
+    .Info
+    {
+        float: left;
+        width: 600px;
+        height: 250px;
+        border: 50px yellow;
+        padding: 50px;
+        margin: 20px;
+        margin-left: 172px;
+    }
+    .Form
+    {
+        float: right;
+        width: 300px;
+        height: 250px;
+        border: 15px whitesmoke;
+        padding: 50px;
+        margin: 20px;
+        margin-right: 172px; 
+     }
+     .button
+     {
+        background-color: red;
+        color: yellow;
+    }

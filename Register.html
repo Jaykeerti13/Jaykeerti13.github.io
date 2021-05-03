@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Galactic Republic</title>
+        <link rel="stylesheet" href="register.css">
+    </head>
+    <body>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+        <script src="firebase.js"></script>
+
+
+        <h1>Welcome to the Republic</h1>
+        <div class="info">
+            <p style="font-size: 45px; font-family: 'star_jediregular'; color: yellow;">Please fill in the following form</p>
+        </div>
+        <div class="form">
+            <form>
+                <p style="font-family: 'starjedi-webfont'; color: yellow;">NAME</p><input type="text" onblur="checkName()" id="Name">
+                    <small id="nameError" style="color: red; display: none;">Check Name</small>
+                <p style="color: yellow; font-family: 'starjedi-webfont';">EMAIL</p><input type="text" id="email" onblur="checkUsername()">
+                    <small id="emailError" style="color: red; display: none;">Check email</small>
+                <p style="color:  yellow; font-family: 'starjedi-webfont';">PASSWORD</p><input type="password" id="password" onblur="checkPassword()">
+                    <small id="passError" style="color: red; display: none;">Check password</small>
+                <p style="color:  yellow; font-family: 'starjedi-webfont';">RE-ENTER PASSWORD</p><input type="password" id="re-password" onblur="checkPasswordAgain()">
+                    <small id="repassError" style="color: red; display: none;">Password must be same</small>
+                <br><br><br>
+                <input type="button" class="button" value="SUBMIT" onclick="signup()">
+                </form>
+         </div>
+    </body>
+</html>
