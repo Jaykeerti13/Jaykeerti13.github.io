@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Republic</title>
+        <link rel="stylesheet" href="Login.css">
+       </head>
+    <body>
+        <!-- <script src="https://www.gstatic.com/firebasejs/init.js"></script> -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+        <script src="Login.js"></script>
+        
+
+
+        <h1>Welcome to the Republic</h1>
+        <div class="Info" style="border: 50px yellow;" >
+            <p style="font-size: 45px; font-family: 'star_jediregular'; color : yellow; opacity: 1.5;">Please provide your Login credentials</p>
+        </div> 
+        <div class="Form">
+            <form>
+                <p style="color: yellow; font-family: 'starjedi-webfont';">EMAIL</p><input type="text" id="email" onblur="checkUsername()">
+                <small id="emailError" style="color: red; display: none;">Check email</small>
+                <p style="color:  yellow; font-family: 'starjedi-webfont';">PASSWORD</p><input type="password" id="password" onblur="checkPassword()">
+                <small id="passError" style="color: red; display: none;">Check password</small>
+                <br><br><br>
+                <input type="button" class="button" value="SUBMIT" onclick="signIn()">
+            </form>
+            <br>
+            <p style="color: red; font-family: 'starjedi-webfont';">New to the Republic? Get your credentials<a href="Register.html">here</a></p>
+        </div>
+    </body>
+</html>
