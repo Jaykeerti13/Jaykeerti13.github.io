@@ -137,33 +137,24 @@ function signup()
             if (user != null) {
                 uid = user.uid;
             }
-            var firebaseRef = firebase.database().ref();
-            var userData = {
-                userFullName: userFullName,
-                userSurname: userSurname,
-                userEmail: userEmail,
-                userPassword: userPassword,
-                userFb: "https://www.facebook.com/",
-                userTw: "https://twitter.com/",
-                userGp: "https://plus.google.com/",
-                userBio: "User biography",
-            }
-            firebaseRef.child(uid).set(userData);
-            swal('Your Account Created','Your account was created successfully, you can log in now.',
-            ).then((value) => {
-                setTimeout(function(){
-                    window.location.replace("../index.html");
-                }, 1000)
-            });
-        }).catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            swal({
-                type: 'error',
-                title: 'Error',
-                text: "Error",
-            })
-        });
+            // var firebaseRef = firebase.database().ref();
+            // var userData = {
+            //     userFullName: userFullName,
+            //     userSurname: userSurname,
+            //     userEmail: userEmail,
+            //     userPassword: userPassword,
+            //     userFb: "https://www.facebook.com/",
+            //     userTw: "https://twitter.com/",
+            //     userGp: "https://plus.google.com/",
+            //     userBio: "User biography",
+            // }
+            // firebaseRef.child(uid).set(userData);
+            user.sendEmailVerification().then(function() {
+                
+              }).catch(function(error) {
+                var errormessage = error.message;
+                console.log(errormessage);
+              });
+        })
     }
 }

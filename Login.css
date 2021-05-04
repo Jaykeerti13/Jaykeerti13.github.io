@@ -14,11 +14,12 @@
     
     }
     
-    body {background-image: url('coruscant.gif'); background-size: contain; background-repeat: repeat;}
+    body {background-image: url('coruscant.gif'); background-size:cover; background-repeat: repeat;}
     h1{text-align:center; color: yellow; font-size: 75px; font-family: 'star_jedi_hollowregular'; }
     .Info
     {
         float: left;
+        position: fixed;
         width: 600px;
         height: 250px;
         border: 50px yellow;
@@ -29,6 +30,7 @@
     .Form
     {
         float: right;
+        position: relative;
         width: 300px;
         height: 250px;
         border: 15px whitesmoke;
