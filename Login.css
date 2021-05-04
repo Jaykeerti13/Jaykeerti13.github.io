@@ -15,29 +15,36 @@
     }
     
     body {background-image: url('coruscant.gif'); background-size:cover; background-repeat: repeat;}
-    h1{text-align:center; color: yellow; font-size: 75px; font-family: 'star_jedi_hollowregular'; }
+    h1{text-align:center; color: yellow; font-size: 5vw; font-family: 'star_jedi_hollowregular'; }
     .Info
     {
         float: left;
-        width: 600px;
-        height: 250px;
-        border: 50px yellow;
-        padding: 50px;
-        margin: 20px;
-        margin-left: 172px;
+        width: 35vw;
+        height: 16.5vw;
+        border: 3.5vw yellow;
+        padding: 3.5vw;
+        margin: 1.5vw;
+        margin-left: 11vw;
     }
     .Form
     {
         float: right;
-        width: 300px;
-        height: 250px;
-        border: 15px whitesmoke;
-        padding: 50px;
-        margin: 20px;
-        margin-right: 172px; 
+        width: 20vw;
+        height: 16.5vw;
+        border: 1vw whitesmoke;
+        padding: 3.5vw;
+        margin: 1.5vw;
+        margin-right: 11vw; 
      }
      .button
      {
+         width: 5vw;
+         height: 1.5vw;
         background-color: red;
         color: yellow;
+    }
+    .text
+    {
+        width: 22vw;
+        height: 2vw;
     }
