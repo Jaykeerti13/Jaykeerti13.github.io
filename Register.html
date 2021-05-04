@@ -13,22 +13,22 @@
 
         <h1>Welcome to the Republic</h1>
         <div class="info">
-            <p style="font-size: 45px; font-family: 'star_jediregular'; color: yellow;">Please fill in the following form</p>
+            <p style="font-size: 3vw; font-family: 'star_jediregular'; color: yellow;">Please fill in the following form</p>
         </div>
         <div class="form">
             <form>
-                <p style="font-family: 'starjedi-webfont'; color: yellow;">NAME</p><input type="text" onblur="checkName()" id="Name">
-                    <small id="nameError" style="color: red; display: none;">Check Name</small>
-                <p style="color: yellow; font-family: 'starjedi-webfont';">EMAIL</p><input type="text" id="email" onblur="checkUsername()">
-                    <small id="emailError" style="color: red; display: none;">Check email</small>
-                <p style="color:  yellow; font-family: 'starjedi-webfont';">PASSWORD</p><input type="password" id="password" onblur="checkPassword()">
-                    <small id="passError" style="color: red; display: none;">Check password</small>
-                <p style="color:  yellow; font-family: 'starjedi-webfont';">RE-ENTER PASSWORD</p><input type="password" id="re-password" onblur="checkPasswordAgain()">
-                    <small id="repassError" style="color: red; display: none;">Password must be same</small>
+                <p style="font-family: 'starjedi-webfont'; color: yellow; font-size: 1.2vw;">NAME</p><input type="text" class="text" onblur="checkName()" id="Name">
+                    <small id="nameError" style="color: red; display: none; font-size: 1vw;">Check Name</small>
+                <p style="color: yellow; font-family: 'starjedi-webfont'; font-size: 1.2vw;">EMAIL</p><input type="text" id="email" class="text" onblur="checkUsername()">
+                    <small id="emailError" style="color: red; display: none; font-size: 1vw">Check email</small>
+                <p style="color:  yellow; font-family: 'starjedi-webfont'; font-size: 1.2vw">PASSWORD</p><input type="password" id="password" class="text" onblur="checkPassword()">
+                    <small id="passError" style="color: red; display: none; font-size: 1vw">Password must have at least 8 charachters including 1 Uppercase,1 lowercase, 1 special character, 1 number</small>
+                <p style="color:  yellow; font-family: 'starjedi-webfont'; font-size: 1.2vw">RE-ENTER PASSWORD</p><input type="password" id="re-password" class="text" onblur="checkPasswordAgain()">
+                    <small id="repassError" style="color: red; display: none; font-size: 1vw">Password must be same</small>
                 <br><br><br>
                 <input type="button" class="button" value="SUBMIT" onclick="signup()">
                 </form>
-                <p style="color: red; font-family: 'starjedi-webfont';">Already a Republican? Login<a href="index.html">here</a></p>
+                <p style="color: red; font-family: 'starjedi-webfont'; font-size: 1vw;">Already a Republican? Login<a href="index.html">here</a></p>
          </div>
     </body>
 </html>
