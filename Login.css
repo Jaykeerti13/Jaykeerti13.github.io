@@ -19,7 +19,6 @@
     .Info
     {
         float: left;
-        position: fixed;
         width: 600px;
         height: 250px;
         border: 50px yellow;
@@ -30,7 +29,6 @@
     .Form
     {
         float: right;
-        position: relative;
         width: 300px;
         height: 250px;
         border: 15px whitesmoke;
