@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile</title>
+        <link rel="icon" href="icon.png">
+        <link rel="stylesheet" href="Profile.css">
+    </head>
+    <body>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+        <script src="firebase.js"></script>
+
+
+        <h1>Welcome to the Republic</h1>
+        <div class="photo">
+            <form>
+                <div class="dp">
+                    <image src="pp.jpg" alt="avatar" id="displaypic" style="border-radius: 50%; width: 100%; height: 100%; object-fit: cover;" ></image>
+                </div>
+                <input type="file" name="file[]" id="files">
+                <input type="hidden" name="url" id="url">
+                <input type="button" value="UPLOAD" id="button" class="button" onclick="changeimage()">
+            </form>
+        </div>
+        <div class="Form">
+            <form>
+                <p>NAME</p><input type="text" id="Name" value="Name" required>
+                <p>D.O.B</p><input type="date" id="DOB">
+                <p>GENDER</p><select name="gender" id="Gender" required>
+                                                <option value="" selected disabled hidden>Choose your Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Others">Others</option>
+                                                </select>
+                <p>PLANET</p><select name="planet" id="Planet" required>
+                                                <option value="" selected disabled hidden>Choose your Planet</option>
+                                                <option value="Abafar">Abafar</option>
+                                                <option value="Ahch-To">Ahch-To</option>
+                                                <option value="Alderaan">Alderaan</option>
+                                                <option value="Christophsis">Christophsis</option>
+                                                <option value="Concord Dawn">Concord Dawn</option>
+                                                <option value="Corellia">Corellia</option>
+                                                <option value="Coruscant">Coruscant</option>
+                                                <option value="D'Qar">D'Qar</option>
+                                                <option value="Dagobah">Dagobah</option>
+                                                <option value="Dantooine">Dantooine</option>
+                                                <option value="Dathomir">Dathomir</option>
+                                                <option value="Earth">Earth</option>
+                                                <option value="Endor">Endor</option>
+                                                <option value="Exegol">Exegol</option>
+                                                <option value="Florrum">Florrum</option>
+                                                <option value="Geonosis">Geonosis</option>
+                                                <option value="Iego">Iego</option>
+                                                <option value="Jakku">Jakku</option>
+                                                <option value="Jedha">Jedha</option>
+                                                <option value="Kamino">Kamino</option>
+                                                <option value="Kashyyyk">Kashyyyk</option>
+                                                <option value="Kessel">Kessel</option>
+                                                <option value="Lothal">Lothal</option>
+                                                <option value="Malachor">Malachor</option>
+                                                <option value="Malastare">Malastare</option>
+                                                <option value="Mandalore">Mandalore</option>
+                                                <option value="Mon Cala">Mon Cala</option>
+                                                <option value="Mortis">Mortis</option>
+                                                <option value="Mustafar">Mustafar</option>
+                                                <option value="Naboo">Naboo</option>
+                                                <option value="Nal Hutta">Nal Hutta</option>
+                                                <option value="Onderon">Onderon</option>
+                                                <option value="Rodia">Rodia</option>
+                                                <option value="Ryloth">Ryloth</option>
+                                                <option value="Scariff">Scariff</option>
+                                                <option value="Skako Minor">Skako Minor</option>
+                                                <option value="Tatooine">Tatooine</option>
+                                                <option value="Toydaria">Toydaria</option>
+                                                <option value="Umbara">Umbara</option>
+                                                <option value="Utapau">Utapau</option>
+                                                <option value="Yavin">Yavin</option>
+                                                <option value="Zygerria">Zygerria</option>
+                                            </select>
+                <p>BIO</p><input type="text" id="Bio" value="Bio">
+                <br><br><br>
+                <input type="button" value="UPDATE" onclick="update()" class="button">
+                <input type="button" value="NEXT" onclick="next()" class="button">
+            </form>
+        </div>
+    </body>
+</html>
