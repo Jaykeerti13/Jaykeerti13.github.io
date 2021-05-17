@@ -37,14 +37,14 @@
         margin-bottom: 1vw;
         height: 9vw;
         margin-right: 1vw;
-        background-color: chartreuse;
+        background-color: rgba(255, 255, 0, 0.753);
     }
     .friends
     {
         float: left;
         width: 24vw;
         height: 40vw;
-        background-color: green;
+        background-color:rgba(40, 131, 161, 0.815);
     }
     .chat
     {
@@ -60,8 +60,8 @@
         height: 40vw;
         margin-right: 0vw;
         margin-left: 1vw;
-        background-color: green;
-    }
+        background-color:rgba(40, 131, 161, 0.815);
+        }
     .search
     {
         background-image: url("icon.png");
@@ -73,6 +73,7 @@
         margin-right: 1vw;
         width: 22vw;
         height: 2vw;
+        font-size: 1vw;
     }
     .friendsearch
     {
@@ -83,6 +84,7 @@
         background-size: contain;
         background-position: right;
         margin-top: 0vw;
+        font-size: 1vw;
     }
     .profile
     {
@@ -113,26 +115,30 @@
         height: 2vw;
         margin-left: 2.5vw;
         margin-top: 1vw;
+        font-size: 1vw;
         display: none;
     }
     .friendsdob
     {
-        width: 7vw;
+        width: 10vw;
         height: 2vw;
         margin-left: 2.5vw;
         margin-top: 1vw;
+        font-size: 1vw;
         display: none;
     }
     .friendsplanet
     {
         width: 10vw;
         height: 2vw;
+        font-size: 1vw;
         margin-left: 2.5vw;
         margin-top: 1vw;
         display: none;
     }
     .friendsbio
     {
+        font-size: 1vw;
         width: 15vw;
         height: 4vw;
         margin-left: 2.5vw;
@@ -158,4 +164,29 @@
         font-size: 1vw;
         background-color: yellow;
         display: none;
+    }
+    .chatdp
+    {
+        width: 3vw;
+        height: 3vw;
+        border-radius: 50%;
+        overflow: hidden;
+        display: inline-block;
+        object-fit: contain;
+        margin-left: 1vw;
+        margin-right: 1vw;
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+    }
+    .chatname
+    {
+        margin-top: 1vw;
+        width: 17vw;
+        height: 3vw;
+        border: 0vw;
+        padding: 0vw;
+        margin-right: 2vw ;
+        text-align: center;
+        display: inline;
+        float: right;
     }

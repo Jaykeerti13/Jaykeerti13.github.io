@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta name="viewport" content="height=device-height, initial-scale=1.0">
-        <title>Sed</title>
+        <title>Home</title>
         <link rel="stylesheet" href="Chat.css">
     </head>
     <body>
@@ -16,7 +16,7 @@
 
         <div class="topbar">
                 <h1 class="heading">Galactic Republic</h1>
-                    <input type="text" id="search" value="search" class="friendsearch">
+                    <input type="text" id="search" value="Search" class="friendsearch">
                     <input type="button" style="display: none;" id="friendsearch" onclick="friendsearch()">    
                     <script>
                         var input = document.getElementById("search");
@@ -30,10 +30,21 @@
                 <input type="image" src="pp.jpg" id="profile" onclick="profile()" class="profile">
         </div>
         <div class="friends">
-            <form>
-                <input type="text" value="Search" class="search">
-            </form>
-            <p style="color: honeydew;">friends wih titties are best</p>
+                <input type="text" value="Search" class="search" id="chats">
+                <input type="button" style="display: none;" id="friendsearch" onclick="chatsearch()">    
+                <script>
+                    var input = document.getElementById("chats");
+                    input.addEventListener("keyup", function(event) {
+                      if (event.keyCode === 13) {
+                       event.preventDefault();
+                       document.getElementById("chatsearch").click();
+                      }
+                    });
+                    </script>
+                <div style="position: relative; display: inline;">
+                <image src="pp.jpg" class="chatdp" id="chatdp"></image>
+                <input type="text" id="chatname" class="chatname" disabled>
+                </div>
         </div>
         <div class="chat">
             <p style="color: honeydew;">chat</p>
@@ -49,9 +60,9 @@
                 <input type="text" id="planet" class="friendsplanet" value="" disabled>
                 <input type="text" id="bio" class="friendsbio" value="" disabled>
                 <br>
-                <input type="button" id="addfriend" class="addfriend" value="Add Friend">
+                <input type="button" id="addfriend" class="addfriend" onclick="addfriend()" value="Add Friend">
                 <br>
-                <input type="button" id="friendadded" class="friendadded" value="Friend Added">
+                <input type="button" id="friendadded" class="friendadded" value="Friend Added" disabled>
         </div>
     </body>
 </html>

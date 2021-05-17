@@ -28,7 +28,7 @@ var firebaseConfig = {
  function checkPassword()
  {
     var userSIPassword = document.getElementById("password");
-    var userSIPasswordFormate = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}/;      
+    var userSIPasswordFormate = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;    
     var flag;
     if(userSIPassword.value.match(userSIPasswordFormate)){
         flag = false;
@@ -75,7 +75,7 @@ function signIn()
     var userSIEmail = document.getElementById("email").value;
     var userSIPassword = document.getElementById("password").value;
     var userSIEmailFormate = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    var userSIPasswordFormate = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}/;      
+    var userSIPasswordFormate =/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
     var checkUserEmailValid = userSIEmail.match(userSIEmailFormate);
     var checkUserPasswordValid = userSIPassword.match(userSIPasswordFormate);
@@ -149,6 +149,9 @@ function signup()
             }).catch((error)=>{
                 console.error(error);
             })
+            db.collection("friends").doc(uid).set({
+                Username: userFullName,
+            })
             user.sendEmailVerification().then(function() {
                 setTimeout(function(){
                     window.location.replace("AfterReg.html");
@@ -212,7 +215,7 @@ function update()
     var bio = document.getElementById("Bio").value
     var db=firebase.firestore();
     let firebaseRef=db.collection("users").doc(uid);
-    firebaseRef.set(
+    firebaseRef.update(
     {
         Name: name,
         DOB: dob,
@@ -289,45 +292,112 @@ function chat()
         message: text,
     })
 }
-function friendsearch()
+function chatsearch()
 {
-    var size;
     var search=document.getElementById("search").value;
     var db=firebase.firestore();
     var firebaseRef = db.collection("users");
     firebaseRef.where("Name","==",search.toUpperCase()).get().then((querySnapshot) =>
     {
         querySnapshot.forEach((doc)=>{
-            console.log(doc.data());
-        console.log("in where");
-        document.getElementById("name").style.display="block";
-        document.getElementById("name").value=doc.data().Name;
-        document.getElementById("dob").style.display="block";
-        document.getElementById("dob").value=doc.data().DOB;
-        document.getElementById("planet").style.display="block";
-        document.getElementById("planet").value=doc.data().Planet;
-        document.getElementById("bio").style.display="block";
-        document.getElementById("bio").value=doc.data().Bio;
-        var storage=firebase.storage();
-        var storageRef=storage.ref();
-        if(doc.data().url!=null)
-        {
-            storageRef.child(doc.data().url).getDownloadURL().then((url) => 
+            document.getElementById("name").value=doc.data().Name;
+            var storage=firebase.storage();
+            var storageRef=storage.ref();
+            if(doc.data().url!=null)
+            {
+                storageRef.child(doc.data().url).getDownloadURL().then((url) => 
+                {
+                    document.getElementById("friendsdp").setAttribute('src', url);
+                }
+                )
+            }
+            else
+            {
+                document.getElementById("friendsdp").setAttribute('src', 'pp.jpg');
+            }
+        })
+    })
+}
+function friendsearch()
+{
+    document.getElementById("friendadded").style.display="none";
+    document.getElementById("addfriend").style.display="none";
+    var search=document.getElementById("search").value;
+    var db=firebase.firestore();
+    var firebaseRef = db.collection("users");
+    firebaseRef.where("Name","==",search.toUpperCase()).get().then((querySnapshot) =>
+    {
+        querySnapshot.forEach((doc)=>{
+            document.getElementById("name").style.display="block";
+            document.getElementById("name").value=doc.data().Name;
+            document.getElementById("dob").style.display="block";
+            document.getElementById("dob").value=doc.data().DOB;
+            document.getElementById("planet").style.display="block";
+            document.getElementById("planet").value=doc.data().Planet;
+            document.getElementById("bio").style.display="block";
+            document.getElementById("bio").value=doc.data().Bio;
+            var storage=firebase.storage();
+            var storageRef=storage.ref();
+            if(doc.data().url!=null)
+            {
+                storageRef.child(doc.data().url).getDownloadURL().then((url) => 
+                {
+                    document.getElementById("friendsdp").style.display="block";
+                    document.getElementById("friendsdp").setAttribute('src', url);
+                }
+                )
+            }
+            else
             {
                 document.getElementById("friendsdp").style.display="block";
-                document.getElementById("friendsdp").setAttribute('src', url);
-            }
-            )
-        }
-        else
-        {
-            document.getElementById("friendsdp").style.display="block";
                 document.getElementById("friendsdp").setAttribute('src', 'pp.jpg');
-        }
+            }
+            var friendsref=db.collection("friends");
+            friendsref.doc(firebase.auth().currentUser.uid).collection(doc.id).doc("Date added").get().then((docSnapshot)=>{
+            if(docSnapshot.exists)
+            {
+               document.getElementById("friendadded").style.display="block";
+            }
+            else
+            {
+                document.getElementById("addfriend").style.display="block";
+            }
+        })
+            friendsref.doc(doc.id).collection(firebase.auth().currentUser.uid).doc("Date added").get().then((docSnapshot)=>
+            {
+                if(docSnapshot.exists)
+                {
+                    document.getElementById("friendadded").style.display="block";
+                    document.getElementById("addfriend").style.display="none";
+                    friendsref.doc(firebase.auth().currentUser.uid).collection(doc.id).doc("Date added").set({
+                        Date:docSnapshot.data(),
+                    })
+                }
+            })
+        })
     })
-})
 }
 function profile()
 {
     window.location.replace("Profile.html");
+}
+function addfriend()
+{
+    var search=document.getElementById("search").value;
+    var db=firebase.firestore();
+    var firebaseRef = db.collection("users");
+    firebaseRef.where("Name","==",search.toUpperCase()).get().then((querySnapshot) =>
+    {
+        querySnapshot.forEach((doc)=>{
+            console.log(doc.id);
+            var uid=firebase.auth().currentUser.uid;
+            console.log(uid);
+            var friendsref=db.collection("friends");
+            friendsref.doc(uid).collection(doc.id).doc("Date added").set({
+                Date:new Date,
+            })
+            document.getElementById("addfriend").style.display="none";
+            document.getElementById("friendadded").style.display="block";
+        })
+    })
 }
