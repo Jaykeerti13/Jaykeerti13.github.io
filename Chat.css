@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'star_jediregular';
+    src: url('starjedi-webfont.woff2') format('woff2'),
+        url('starjedi-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+    @font-face {
+        font-family: 'star_jedi_hollowregular';
+        src: url('starjhol-webfont.woff2') format('woff2'),
+             url('starjhol-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    
+    }
+    
+    body {background-image: url('bkgd.gif'); background-size:cover; background-repeat: repeat;}
+
+    .heading
+    {
+        font-family: 'star_jediregular';
+        font-size: 5vw;
+        margin-left: 10vw;
+        margin-top: 0vw;
+        margin-bottom: 0vw;
+        margin-right: 5vw;
+        text-align: left;
+        display: inline-block;
+    }
+    .topbar
+    {
+        background-image: url("icon.png");
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 99vw;
+        margin-bottom: 1vw;
+        height: 9vw;
+        margin-right: 1vw;
+        background-color: chartreuse;
+    }
+    .friends
+    {
+        float: left;
+        width: 24vw;
+        height: 40vw;
+        background-color: green;
+    }
+    .chat
+    {
+        float: left;
+        width: 49vw;
+        height: 40vw;
+        margin-left: 1vw;
+    }
+    .info
+    {
+        float: left;
+        width: 20vw;
+        height: 40vw;
+        margin-right: 0vw;
+        margin-left: 1vw;
+        background-color: green;
+    }
+    .search
+    {
+        background-image: url("icon.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right;
+        margin-top: 1vw;
+        margin-left: 1vw;
+        margin-right: 1vw;
+        width: 22vw;
+        height: 2vw;
+    }
+    .friendsearch
+    {
+        height: 2vw;
+        width: 15vw;
+        background-image: url("icon.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: right;
+        margin-top: 0vw;
+    }
+    .profile
+    {
+        width: 6vw;
+        height: 6vw;
+        border-radius: 50%;
+        margin-left: 2vw;
+        overflow: hidden;
+        display: inline-block;
+        object-fit: contain;
+    }
+
+    .friendsdp
+    {
+        margin-top: 2vw;
+        width: 10vw;
+        height: 10vw;
+        border-radius: 50%;
+        margin-left: 5vw;
+        overflow: hidden;
+        display: inline-block;
+        object-fit: contain;
+        display: none;
+    }
+    .friendsname
+    {
+        width: 15vw;
+        height: 2vw;
+        margin-left: 2.5vw;
+        margin-top: 1vw;
+        display: none;
+    }
+    .friendsdob
+    {
+        width: 7vw;
+        height: 2vw;
+        margin-left: 2.5vw;
+        margin-top: 1vw;
+        display: none;
+    }
+    .friendsplanet
+    {
+        width: 10vw;
+        height: 2vw;
+        margin-left: 2.5vw;
+        margin-top: 1vw;
+        display: none;
+    }
+    .friendsbio
+    {
+        width: 15vw;
+        height: 4vw;
+        margin-left: 2.5vw;
+        margin-top: 1vw;
+        display: none;
+    }
+    .addfriend
+    {
+        width: 6vw;
+        height: 1.5vw;
+        margin-left: 2.5vw;
+        margin-top: 1vw;
+        font-size: 1vw;
+        background-color: red;
+        display: none;
+    }
+    .friendadded
+    {
+        width: 8vw;
+        height: 1.5vw;
+        margin-left: 2.5vw;
+        margin-top: 1vw;
+        font-size: 1vw;
+        background-color: yellow;
+        display: none;
+    }

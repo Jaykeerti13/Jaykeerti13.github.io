@@ -140,7 +140,7 @@ function signup()
             }
             var db= firebase.firestore();
             db.collection("users").doc(uid).set({      
-                Name: userFullName,
+                Name: userFullName.toUpperCase(),
                 DOB: "01/01/2000",
                 Gender: "gender",
                 Planet: "planet",
@@ -168,7 +168,6 @@ firebase.auth().onAuthStateChanged((user)=>
         let uid
         if(user!=null)
             uid=user.uid;
-        console.log(uid);
         var db=firebase.firestore();
         let firebaseRef = db.collection("users").doc(uid);
         var storage=firebase.storage();
@@ -244,4 +243,91 @@ function changeimage()
 function next()
 {
     window.location.replace("Chat.html");
+}
+firebase.auth().onAuthStateChanged((user)=>
+{
+    if(user)
+    {
+        let user=firebase.auth().currentUser;
+        let uid
+        if(user!=null)
+            uid=user.uid;
+        var db=firebase.firestore();
+        let firebaseRef = db.collection("users").doc(uid);
+        var storage=firebase.storage();
+        var storageRef=storage.ref();
+        firebaseRef.get().then((doc) =>
+        {
+            if(doc.data().url!=null)
+            {
+                storageRef.child(doc.data().url).getDownloadURL().then((url) => 
+                {
+                    document.getElementById("profile").setAttribute('src', url);
+                }
+                )
+            }
+            else
+            {
+                storageRef.child(uid).getDownloadURL().then((url) => 
+                {
+                    document.getElementById("profile").setAttribute('src', 'pp.jpg');
+                }
+                )
+            }
+        }
+        )
+    }
+    else
+        alert("User is not signed in");
+}
+);
+function chat()
+{
+    var database = firebase.database();
+    var text = document.getElementById("text").value;
+    database.ref('users/kcb6tvXwiQSAMEWSYcRv6Gm5NAl2/Friends/SBVJDjeMzbggv2XEwEt4lwrpUQM2').set({
+        message: text,
+    })
+}
+function friendsearch()
+{
+    var size;
+    var search=document.getElementById("search").value;
+    var db=firebase.firestore();
+    var firebaseRef = db.collection("users");
+    firebaseRef.where("Name","==",search.toUpperCase()).get().then((querySnapshot) =>
+    {
+        querySnapshot.forEach((doc)=>{
+            console.log(doc.data());
+        console.log("in where");
+        document.getElementById("name").style.display="block";
+        document.getElementById("name").value=doc.data().Name;
+        document.getElementById("dob").style.display="block";
+        document.getElementById("dob").value=doc.data().DOB;
+        document.getElementById("planet").style.display="block";
+        document.getElementById("planet").value=doc.data().Planet;
+        document.getElementById("bio").style.display="block";
+        document.getElementById("bio").value=doc.data().Bio;
+        var storage=firebase.storage();
+        var storageRef=storage.ref();
+        if(doc.data().url!=null)
+        {
+            storageRef.child(doc.data().url).getDownloadURL().then((url) => 
+            {
+                document.getElementById("friendsdp").style.display="block";
+                document.getElementById("friendsdp").setAttribute('src', url);
+            }
+            )
+        }
+        else
+        {
+            document.getElementById("friendsdp").style.display="block";
+                document.getElementById("friendsdp").setAttribute('src', 'pp.jpg');
+        }
+    })
+})
+}
+function profile()
+{
+    window.location.replace("Profile.html");
 }

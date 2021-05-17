@@ -1,8 +1,57 @@
 <html>
     <head>
+        <meta name="viewport" content="height=device-height, initial-scale=1.0">
         <title>Sed</title>
+        <link rel="stylesheet" href="Chat.css">
     </head>
-    <body style="background-image: url('coruscant.gif'); background-size:cover; background-repeat: repeat;">
-        <p style="font-size: 20vw; color: yellow;">Abhi bana ni hai</p>
+    <body>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+        <script src="firebase.js"></script>
+
+
+
+        <div class="topbar">
+                <h1 class="heading">Galactic Republic</h1>
+                    <input type="text" id="search" value="search" class="friendsearch">
+                    <input type="button" style="display: none;" id="friendsearch" onclick="friendsearch()">    
+                    <script>
+                        var input = document.getElementById("search");
+                        input.addEventListener("keyup", function(event) {
+                          if (event.keyCode === 13) {
+                           event.preventDefault();
+                           document.getElementById("friendsearch").click();
+                          }
+                        });
+                        </script>
+                <input type="image" src="pp.jpg" id="profile" onclick="profile()" class="profile">
+        </div>
+        <div class="friends">
+            <form>
+                <input type="text" value="Search" class="search">
+            </form>
+            <p style="color: honeydew;">friends wih titties are best</p>
+        </div>
+        <div class="chat">
+            <p style="color: honeydew;">chat</p>
+            <form>
+                <input type="text" id="text">
+                <input type="button" onclick="chat()">
+            </form>
+        </div>
+        <div class="info">
+                <image src="pp.jpg" class="friendsdp" id="friendsdp"></image>
+                <input type="text" id="name" class="friendsname" value="" disabled>
+                <input type="date" id="dob" class="friendsdob" value="" disabled>
+                <input type="text" id="planet" class="friendsplanet" value="" disabled>
+                <input type="text" id="bio" class="friendsbio" value="" disabled>
+                <br>
+                <input type="button" id="addfriend" class="addfriend" value="Add Friend">
+                <br>
+                <input type="button" id="friendadded" class="friendadded" value="Friend Added">
+        </div>
     </body>
 </html>
