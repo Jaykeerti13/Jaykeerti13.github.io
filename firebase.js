@@ -168,7 +168,7 @@ firebase.auth().onAuthStateChanged((user)=>
     if(user)
     {
         let user=firebase.auth().currentUser;
-        let uid
+        let uid;
         if(user!=null)
             uid=user.uid;
         var db=firebase.firestore();
@@ -401,3 +401,126 @@ function addfriend()
         })
     })
 }
+firebase.auth().onAuthStateChanged((user)=>
+{
+    if(user)
+    {
+        let user=firebase.auth().currentUser;
+        let uid;
+        if(user!=null)
+            uid=user.uid;
+        var db=firebase.firestore();
+        let firebaseRef = db.collection("users").doc(uid);
+        var storage=firebase.storage();
+        var storageRef=storage.ref();
+        if(uid=="SBVJDjeMzbggv2XEwEt4lwrpUQM2")
+        {
+            var name=document.getElementById("chatname");
+            name.value="Jaykeerti";
+            var dp=document.getElementById("chatdp");
+            dp.src="https://firebasestorage.googleapis.com/v0/b/republic-13.appspot.com/o/kcb6tvXwiQSAMEWSYcRv6Gm5NAl2%2F65f7f99a-5c93-4af4-8486-a74ab2ea9155.jpg?alt=media&token=a7b40719-3d9a-4c51-a0cf-fac89991bb5e";
+        }
+        if(uid=="kcb6tvXwiQSAMEWSYcRv6Gm5NAl2")
+        {
+            var name=document.getElementById("chatname");
+            name.value="Stuti Sharma";
+            var dp=document.getElementById("chatdp");
+            dp.src="https://firebasestorage.googleapis.com/v0/b/republic-13.appspot.com/o/SBVJDjeMzbggv2XEwEt4lwrpUQM2%2F1fb4751d-1ec0-4af6-8fa3-0e0f02a0dd9f.jpg?alt=media&token=4bfa60ef-7640-4a90-951d-d5768f8e078f";
+        }
+        loadMessages(uid);
+    }
+});
+function sendMessage(){
+    var timestamp = Date.now();
+    const messageInput=document.getElementById("text");
+    const message=messageInput.value;
+
+    messageInput.value="";
+
+    let uid=firebase.auth().currentUser.uid;
+    var db=firebase.firestore();
+    var jay=db.collection("kcb6tvXwiQSAMEWSYcRv6Gm5NAl2");
+    var stu=db.collection("SBVJDjeMzbggv2XEwEt4lwrpUQM2");
+    if(uid=="kcb6tvXwiQSAMEWSYcRv6Gm5NAl2")
+    {
+        db.collection("kcb6tvXwiQSAMEWSYcRv6Gm5NAl2").doc("/"+timestamp).set({
+            message : message,
+            whose : 1
+        },{merge:true});
+        db.collection("SBVJDjeMzbggv2XEwEt4lwrpUQM2").doc("/"+timestamp).set({
+            message : message,
+            whose : 0
+        },{merge:true});
+    }
+    if(uid=="SBVJDjeMzbggv2XEwEt4lwrpUQM2")
+    {
+        db.collection("kcb6tvXwiQSAMEWSYcRv6Gm5NAl2").doc("/"+timestamp).set({
+            message : message,
+            whose : 0
+        },{merge:true});
+        db.collection("SBVJDjeMzbggv2XEwEt4lwrpUQM2").doc("/"+timestamp).set({
+            message : message,
+            whose : 1
+        },{merge:true});
+    }  
+}
+function loadMessages(u)
+{
+    let uid=u;
+    var db=firebase.firestore();
+    console.log(uid);
+    var currentUser=db.collection(uid);
+    currentUser.get().then((querySnapshot)=>
+    {
+        querySnapshot.forEach((doc)=>
+        {
+            if(doc.data().whose=="1")
+            {
+                var message=document.createElement("input");
+                message.type="text";
+                message.disabled=true;
+                message.id=doc.id;
+                message.value=doc.data().message;
+                message.className="right";
+                document.getElementById("chatbox").appendChild(message);
+            }
+            else    
+            {
+                var message=document.createElement("input");
+                message.type="text";
+                message.disabled=true;
+                message.id=doc.id;
+                message.value=doc.data().message;
+                message.className="left";
+                document.getElementById("chatbox").appendChild(message);                
+            }
+        })
+    })
+    currentUser.onSnapshot((snapshot)=>
+    {
+        snapshot.docChanges().forEach((change)=>{
+        if(change.doc.data().whose=="1")
+            {
+                var message=document.createElement("input");
+                message.type="text";
+                message.disabled=true;
+                message.id=change.doc.id;
+                message.value=change.doc.data().message;
+                message.className="right";
+                document.getElementById("chatbox").appendChild(message);
+            }
+            else    
+            {
+                var message=document.createElement("input");
+                message.type="text";
+                message.disabled=true;
+                message.id=change.doc.id;
+                message.value=change.doc.data().message;
+                message.className="left";
+                document.getElementById("chatbox").appendChild(message);                
+            }
+        })
+    })
+}
+
+

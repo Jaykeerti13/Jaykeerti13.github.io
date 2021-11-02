@@ -53,6 +53,29 @@
         height: 40vw;
         margin-left: 1vw;
     }
+    .message
+    {
+        margin-top:0vw;
+    }
+    .SEND
+    {
+        background-color: green;
+        width: 4vw;
+        height: 2vw;
+        border: 0vw;
+        padding: 0vw;
+        margin-top: 1vw ;
+        margin-left: 3vw;
+        font-size: 1vw;
+    }
+    .messageBox
+    {
+        width: 40vw;
+        height: 2vw;
+        border: 0vw;
+        padding: 0vw;
+        font-size: 1.5vw;
+    }
     .info
     {
         float: left;
@@ -189,4 +212,33 @@
         text-align: center;
         display: inline;
         float: right;
+        font-size: 1.5vw;
+    }
+    .left
+    {
+        margin-bottom: 1vw;
+        margin-right: 20vw;
+        float: left;
+        width: 20vw;
+        height: 2vw;
+        background-color: red;
+        font-size: 1.5vw;
+        color: black;
+    }
+    .right
+    {
+        color: black;
+        background-color: blue;
+        margin-bottom: 1vw;
+        margin-left: 20vw;
+        float: right;
+        width: 20vw;
+        height: 2vw;
+        font-size: 1.5vw;
+    }
+    .chatbox
+    {
+        overflow: auto;
+        width: 49vw;
+        height: 35vw;
     }

@@ -13,7 +13,7 @@
         <script src="firebase.js"></script>
 
 
-
+ 
         <div class="topbar">
                 <h1 class="heading">Galactic Republic</h1>
                     <input type="text" id="search" value="Search" class="friendsearch">
@@ -41,16 +41,16 @@
                       }
                     });
                     </script>
-                <div style="position: relative; display: inline;">
+                <div id="list" style="position: relative; display: inline;">
                 <image src="pp.jpg" class="chatdp" id="chatdp"></image>
                 <input type="text" id="chatname" class="chatname" disabled>
                 </div>
         </div>
         <div class="chat">
-            <p style="color: honeydew;">chat</p>
-            <form>
-                <input type="text" id="text">
-                <input type="button" onclick="chat()">
+            <div class="chatbox" id="chatbox"></div>
+            <form class="message">
+                <input type="text" class="messageBox" id="text">
+                <input type="button" value="SEND" class="SEND" onclick="sendMessage()">
             </form>
         </div>
         <div class="info">
