@@ -221,14 +221,14 @@
         float: left;
         width: 20vw;
         height: 2vw;
-        background-color: red;
+        background-color: rgb(250, 122, 17);
         font-size: 1.5vw;
         color: black;
     }
     .right
     {
         color: black;
-        background-color: blue;
+        background-color: #00eeff;
         margin-bottom: 1vw;
         margin-left: 20vw;
         float: right;
