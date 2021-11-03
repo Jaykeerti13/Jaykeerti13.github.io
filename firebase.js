@@ -484,7 +484,7 @@ function loadMessages(u)
                 message.className="right";
                 document.getElementById("chatbox").appendChild(message);
                 var div=document.getElementById("chatbox");
-                div.scrollTop=div.scrollHeight;
+               // div.scrollTop=div.scrollHeight;
 
             }
             else    
@@ -496,7 +496,7 @@ function loadMessages(u)
                 message.value=doc.data().message;
                 message.className="left";
                 document.getElementById("chatbox").appendChild(message);                
-                div.scrollTop=div.scrollHeight;
+               // div.scrollTop=div.scrollHeight;
             }
         })
     })
@@ -512,7 +512,7 @@ function loadMessages(u)
                 message.value=change.doc.data().message;
                 message.className="right";
                 document.getElementById("chatbox").appendChild(message);
-                div.scrollTop=div.scrollHeight;
+               // div.scrollTop=div.scrollHeight;
             }
             else    
             {
@@ -523,7 +523,7 @@ function loadMessages(u)
                 message.value=change.doc.data().message;
                 message.className="left";
                 document.getElementById("chatbox").appendChild(message);
-                div.scrollTop=div.scrollHeight;                
+                //div.scrollTop=div.scrollHeight;                
             }
         })
     })
