@@ -129,12 +129,43 @@ function addfriend()
     firebaseRef.where("Name","==",search.toUpperCase()).get().then((querySnapshot) =>
     {
         querySnapshot.forEach((doc)=>{
-            console.log(doc.id);
             var uid=firebase.auth().currentUser.uid;
-            console.log(uid);
             var friendsref=db.collection("friends");
             friendsref.doc(uid).collection(doc.id).doc("Date added").set({
                 Date:new Date,
+            })
+            friendsref.doc(doc.id).collection(uid).doc("Date added").set({
+                Date:new Date,
+            })
+            friendsref.doc(uid).get().then((dog)=>
+            {
+                if(dog.data().Friends!=null)
+                {
+                   friendsref.doc(uid).update({
+                       Friends: firebase.firestore.FieldValue.arrayUnion(doc.id)
+                   })
+                }
+                else
+                {
+                    friendsref.doc(uid).update({
+                        Friends: [doc.id]
+                    })
+                }
+            })
+            friendsref.doc(doc.id).get().then((dog)=>
+            {
+                if(dog.data().Friends!=null)
+                {
+                   friendsref.doc(doc.id).update({
+                       Friends: firebase.firestore.FieldValue.arrayUnion(uid)
+                   })
+                }
+                else
+                {
+                    friendsref.doc(doc.id).update({
+                        Friends: [uid]
+                    })
+                }
             })
             document.getElementById("addfriend").style.display="none";
             document.getElementById("friendadded").style.display="block";
