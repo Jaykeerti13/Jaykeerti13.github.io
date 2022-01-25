@@ -1,4 +1,13 @@
-import{firebaseConfig} from './firebase'
+var firebaseConfig = {
+    apiKey: "AIzaSyCDXkryBpoDZ2DGSnrLxrsPPymY-84YGm4",
+    authDomain: "republic-13.firebaseapp.com",
+    databaseURL: "https://republic-13-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "republic-13",
+    storageBucket: "republic-13.appspot.com",
+    messagingSenderId: "387031321812",
+    appId: "1:387031321812:web:d8ab351d650192c0c8bf41",
+    measurementId: "G-XFFQFX50DN"
+  };
 firebase.initializeApp(firebaseConfig);
 
 // Display DP
@@ -237,4 +246,57 @@ function loadMessages(u)
     })
 }
 
+// List of friends
 
+firebase.auth().onAuthStateChanged((user)=>
+{
+    if(user)
+    {
+        let user=firebase.auth().currentUser;
+        let uid
+        if(user!=null)
+            uid=user.uid;
+        var db=firebase.firestore();
+        let firebaseRef = db.collection("friends").doc(uid);
+        var storage=firebase.storage();
+        var storageRef=storage.ref();
+
+        firebaseRef.get().then((doc) =>
+        {
+            var friends=[];
+            friends=doc.data().Friends;
+            for(let i=0;i<friends.length;i++)
+            {
+                db.collection("users").doc(friends[i]).get().then((doc)=>
+                {
+                    var image = document.createElement("img");
+                    var name = document.createElement("input");
+                    name.type = "text";
+                    name.classList.add("chatName");
+                    name.disabled = "true";
+                    image.classList.add("chatdp");
+                    name.value = doc.data().Name;
+                    console.log(name.value)
+                    if(doc.data().url!=null)
+                    {
+                        storageRef.child(doc.data().url).getDownloadURL().then((url) => 
+                        {
+                            image.src = url;
+                        }
+                        )
+                    }
+                    else
+                    {
+                        storageRef.child(uid).getDownloadURL().then((url) => 
+                        {
+                            image.src = "pp.jpg";    
+                        }
+                        )
+                    }
+                    document.getElementById("list").appendChild(image);
+                    document.getElementById("list").appendChild(name);
+                });
+            }
+        });
+    }
+});
