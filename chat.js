@@ -190,7 +190,6 @@ function sendMessage(){
             break;
     }
     var rec = alltops[i].id
-    console.log(uid,rec)
     var db=firebase.firestore();
     var sender=db.collection("friends").doc(uid).collection(rec);
     var reciever=db.collection("friends").doc(rec).collection(uid);
@@ -208,6 +207,7 @@ function sendMessage(){
 
 function loadMessages(u)
 {
+    document.getElementById("chatbox").innerHTML = '';
     const alltops = document.getElementsByClassName("top");
     for(let i=0;i<alltops.length;i++)
     {
@@ -220,74 +220,37 @@ function loadMessages(u)
     let uid=user.uid;
     var db=firebase.firestore();
     var currentUser=db.collection("friends").doc(uid).collection(u);
-    currentUser.get().then((querySnapshot)=>
-    {
-        querySnapshot.forEach((doc)=>
-        {
-            if(doc.data().whose=="1")
-            {
-                var message=document.createElement("input");
-                message.type="text";
-                message.disabled=true;
-                message.id=doc.id;
-                message.value=doc.data().message;
-                message.className="right";
-                document.getElementById("chatbox").appendChild(message);
-                var div=document.getElementById("chatbox");
-               // div.scrollTop=div.scrollHeight;
-
-            }
-            else if(doc.data().whose=="0") 
-            {
-                var message=document.createElement("input");
-                message.type="text";
-                message.disabled=true;
-                message.id=doc.id;
-                message.value=doc.data().message;
-                message.className="left";
-                document.getElementById("chatbox").appendChild(message);                
-               // div.scrollTop=div.scrollHeight;
-            }
-        })
-    })
     currentUser.onSnapshot((snapshot)=>
         {
             snapshot.docChanges().forEach((change)=>{
-            if(change.type=="added")
-            {
-                if(change.doc.data().whose=="1")
+                if(change.type=="added")
                 {
-                    var message=document.createElement("input");
-                    message.type="text";
-                    message.disabled=true;
-                    message.id=change.doc.id;
-                    message.value=change.doc.data().message;
-                    message.className="right";
-                    document.getElementById("chatbox").appendChild(message);
-                   // div.scrollTop=div.scrollHeight;
+                    console.log(change.doc.data().message);
+                    if(change.doc.data().whose=="1")
+                    {
+                        var message=document.createElement("input");
+                        message.type="text";
+                        message.disabled=true;
+                        message.id=change.doc.id;
+                        message.value=change.doc.data().message;
+                        message.className="right";
+                        document.getElementById("chatbox").appendChild(message);
+                        document.getElementById("chatbox").scrollTop=document.getElementById("chatbox").scrollHeight;
+                    }
+                    else if(change.doc.data().whose=="0")
+                    {
+                        var message=document.createElement("input");
+                        message.type="text";
+                        message.disabled=true;
+                        message.id=change.doc.id;
+                        message.value=change.doc.data().message;
+                        message.className="left";
+                        document.getElementById("chatbox").appendChild(message);
+                        document.getElementById("chatbox").scrollTop=document.getElementById("chatbox").scrollHeight;                    }
                 }
-                else if(change.doc.data().whose=="0")
-                {
-                    var message=document.createElement("input");
-                    message.type="text";
-                    message.disabled=true;
-                    message.id=change.doc.id;
-                    message.value=change.doc.data().message;
-                    message.className="left";
-                    document.getElementById("chatbox").appendChild(message);
-                    //div.scrollTop=div.scrollHeight;                
-                }
-            }
             })
         })
 }
-
-// Real-time messages load
-
-// firebase.auth().onAuthStateChanged((user)=>
-// {
-//    
-// });
 
 // List of friends
 
