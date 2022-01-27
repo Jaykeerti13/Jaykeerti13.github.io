@@ -183,41 +183,43 @@ function sendMessage(){
     messageInput.value="";
 
     let uid=firebase.auth().currentUser.uid;
-    var db=firebase.firestore();
-    var jay=db.collection("kcb6tvXwiQSAMEWSYcRv6Gm5NAl2");
-    var stu=db.collection("SBVJDjeMzbggv2XEwEt4lwrpUQM2");
-    if(uid=="kcb6tvXwiQSAMEWSYcRv6Gm5NAl2")
+    const alltops = document.getElementsByClassName("top");
+    for(var i=0;i<alltops.length;i++)
     {
-        db.collection("kcb6tvXwiQSAMEWSYcRv6Gm5NAl2").doc("/"+timestamp).set({
-            message : message,
-            whose : 1
-        },{merge:true});
-        db.collection("SBVJDjeMzbggv2XEwEt4lwrpUQM2").doc("/"+timestamp).set({
-            message : message,
-            whose : 0
-        },{merge:true});
+        if(alltops[i].style.display!='none')
+            break;
     }
-    if(uid=="SBVJDjeMzbggv2XEwEt4lwrpUQM2")
-    {
-        db.collection("kcb6tvXwiQSAMEWSYcRv6Gm5NAl2").doc("/"+timestamp).set({
-            message : message,
-            whose : 0
-        },{merge:true});
-        db.collection("SBVJDjeMzbggv2XEwEt4lwrpUQM2").doc("/"+timestamp).set({
-            message : message,
-            whose : 1
-        },{merge:true});
-    }  
+    var rec = alltops[i].id
+    console.log(uid,rec)
+    var db=firebase.firestore();
+    var sender=db.collection("friends").doc(uid).collection(rec);
+    var reciever=db.collection("friends").doc(rec).collection(uid);
+    sender.doc("/"+timestamp).set({
+        message : message,
+        whose : 1
+    },{merge:true});
+    reciever.doc("/"+timestamp).set({
+        message : message,
+        whose : 0
+    },{merge:true});  
 }
 
 // Load a message
 
 function loadMessages(u)
 {
-    let uid=u;
+    const alltops = document.getElementsByClassName("top");
+    for(let i=0;i<alltops.length;i++)
+    {
+        if(alltops[i].style.display!='none' && alltops.id!=u)
+            alltops[i].style.display = 'none';
+    }
+    var topbar=document.getElementById(u);
+    topbar.style.display = '';
+    let user=firebase.auth().currentUser;
+    let uid=user.uid;
     var db=firebase.firestore();
-    console.log(uid);
-    var currentUser=db.collection(uid);
+    var currentUser=db.collection("friends").doc(uid).collection(u);
     currentUser.get().then((querySnapshot)=>
     {
         querySnapshot.forEach((doc)=>
@@ -235,7 +237,7 @@ function loadMessages(u)
                // div.scrollTop=div.scrollHeight;
 
             }
-            else    
+            else if(doc.data().whose=="0") 
             {
                 var message=document.createElement("input");
                 message.type="text";
@@ -249,33 +251,43 @@ function loadMessages(u)
         })
     })
     currentUser.onSnapshot((snapshot)=>
-    {
-        snapshot.docChanges().forEach((change)=>{
-        if(change.doc.data().whose=="1")
+        {
+            snapshot.docChanges().forEach((change)=>{
+            if(change.type=="added")
             {
-                var message=document.createElement("input");
-                message.type="text";
-                message.disabled=true;
-                message.id=change.doc.id;
-                message.value=change.doc.data().message;
-                message.className="right";
-                document.getElementById("chatbox").appendChild(message);
-               // div.scrollTop=div.scrollHeight;
+                if(change.doc.data().whose=="1")
+                {
+                    var message=document.createElement("input");
+                    message.type="text";
+                    message.disabled=true;
+                    message.id=change.doc.id;
+                    message.value=change.doc.data().message;
+                    message.className="right";
+                    document.getElementById("chatbox").appendChild(message);
+                   // div.scrollTop=div.scrollHeight;
+                }
+                else if(change.doc.data().whose=="0")
+                {
+                    var message=document.createElement("input");
+                    message.type="text";
+                    message.disabled=true;
+                    message.id=change.doc.id;
+                    message.value=change.doc.data().message;
+                    message.className="left";
+                    document.getElementById("chatbox").appendChild(message);
+                    //div.scrollTop=div.scrollHeight;                
+                }
             }
-            else    
-            {
-                var message=document.createElement("input");
-                message.type="text";
-                message.disabled=true;
-                message.id=change.doc.id;
-                message.value=change.doc.data().message;
-                message.className="left";
-                document.getElementById("chatbox").appendChild(message);
-                //div.scrollTop=div.scrollHeight;                
-            }
+            })
         })
-    })
 }
+
+// Real-time messages load
+
+// firebase.auth().onAuthStateChanged((user)=>
+// {
+//    
+// });
 
 // List of friends
 
@@ -296,18 +308,25 @@ firebase.auth().onAuthStateChanged((user)=>
         {
             var friends=[];
             friends=doc.data().Friends;
-            for(let i=0;i<friends.length;i++)
+            friends.forEach(i=>
             {
-                db.collection("users").doc(friends[i]).get().then((doc)=>
+                var image = document.createElement("img");
+                var name = document.createElement("input");
+                var top = document.createElement("input");
+                db.collection("users").doc(i).get().then((doc)=>
                 {
-                    var image = document.createElement("img");
-                    var name = document.createElement("input");
-                    name.type = "text";
+                    top.type = "text";
+                    top.classList.add("top");
+                    top.id = i;
+                    top.setAttribute("value",doc.data().Name);
+                    top.disabled = "true";
+                    top.style.display = 'none';
+                    name.type = "button";
                     name.classList.add("chatName");
                     name.disabled = "true";
                     image.classList.add("chatdp");
                     name.value = doc.data().Name;
-                    console.log(name.value)
+                    image.addEventListener("click", ()=>{loadMessages(i)});
                     if(doc.data().url!=null)
                     {
                         storageRef.child(doc.data().url).getDownloadURL().then((url) => 
@@ -324,10 +343,11 @@ firebase.auth().onAuthStateChanged((user)=>
                         }
                         )
                     }
+                    document.getElementById("namelist").appendChild(top);
                     document.getElementById("list").appendChild(image);
                     document.getElementById("list").appendChild(name);
                 });
-            }
+            });
         });
     }
 });

@@ -15,10 +15,22 @@
     }
     
     body {background-image: url('bkgd.gif'); background-size:cover; background-repeat: repeat;}
-
+    .top
+    {
+        width: 49vw;
+        height: 2vw;
+        border: 0vw;
+        padding: 0vw;
+        font-size: 1.5vw;
+        background-color:rgba(40, 131, 161, 0.815);
+        font-family: 'star_jediregular';
+        font-size: 2vw;
+        text-align: center;
+        display: inline-block;
+    }
     .heading
     {
-        font-family: 'star_jediregular';
+        font-family: 'star_jedi_hollowregular';
         font-size: 5vw;
         margin-left: 10vw;
         margin-top: 0vw;
