@@ -1,1 +1,1 @@
-window.location.assign("/frontend/html/index.html")
+window.location.assign("/workspaces/Jaykeerti13.github.io/frontend/html/index.html")
