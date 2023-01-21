@@ -1,0 +1,1 @@
+window.location.assign("/frontend/html/Home.html")
