@@ -1,23 +1,22 @@
 @font-face {
     font-family: 'star_jediregular';
-    src: url('starjedi-webfont.woff2') format('woff2'),
-        url('starjedi-webfont.woff') format('woff');
+    src: url('utils/fonts/starjedi-webfont.woff2') format('woff2'),
+        url('utils/fonts/starjedi-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     }
     @font-face {
         font-family: 'star_jedi_hollowregular';
-        src: url('starjhol-webfont.woff2') format('woff2'),
-             url('starjhol-webfont.woff') format('woff');
+        src: url('utils/fonts/starjhol-webfont.woff2') format('woff2'),
+             url('utils/fonts/starjhol-webfont.woff') format('woff');
         font-weight: normal;
         font-style: normal;
     
     }
     
-    p{color: green; font-family: 'starjedi-webfont'; color: yellowgreen;}
-    body {background-image: url('coruscant.gif'); background-size:cover; background-repeat: repeat;}
-    h1{text-align:center; color: yellow; font-size: 3vw; font-family: 'star_jedi_hollowregular'; }
-    .photo
+    body {background-image: url('utils/pics/gifs/coruscant.gif'); background-size:cover; background-repeat: repeat;}
+    h1{text-align:center; color: yellow; font-size: 5vw; font-family: 'star_jedi_hollowregular'; }
+    .Info
     {
         float: left;
         width: 35vw;
@@ -26,7 +25,6 @@
         padding: 3.5vw;
         margin: 1.5vw;
         margin-left: 11vw;
-        text-align: center;
     }
     .Form
     {
@@ -41,7 +39,7 @@
      .button
      {
          width: 5vw;
-         height: 2vw;
+         height: 1.5vw;
         background-color: red;
         color: yellow;
         font-size: 1vw;
@@ -50,13 +48,4 @@
     {
         width: 22vw;
         height: 2vw;
-    }
-    .dp
-    {
-        width: 25vw;
-        height: 25vw;
-        border-radius: 50%;
-        overflow: hidden;
-        display: inline-block;
-        object-fit: contain;
     }
