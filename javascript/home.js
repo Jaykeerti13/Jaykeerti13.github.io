@@ -1,1 +1,1 @@
-window.location.assign("/frontend/html/Home.html")
+window.location.assign("/frontend/html/index.html")
