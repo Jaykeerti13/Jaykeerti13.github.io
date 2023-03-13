@@ -1,20 +1,20 @@
 @font-face {
     font-family: 'star_jediregular';
-    src: url('utils/fonts/starjedi-webfont.woff2') format('woff2'),
-        url('utils/fonts/starjedi-webfont.woff') format('woff');
+    src: url('/utils/fonts/starjedi-webfont.woff2') format('woff2'),
+        url('/utils/fonts/starjedi-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     }
     @font-face {
         font-family: 'star_jedi_hollowregular';
-        src: url('utils/fonts/starjhol-webfont.woff2') format('woff2'),
-             url('utils/fonts/starjhol-webfont.woff') format('woff');
+        src: url('/utils/fonts/starjhol-webfont.woff2') format('woff2'),
+             url('/utils/fonts/starjhol-webfont.woff') format('woff');
         font-weight: normal;
         font-style: normal;
     
     }
     
-    body {background-image: url('utils/pics/gifs/bkgd.gif'); background-size:cover; background-repeat: repeat;}
+    body {background-image: url('/utils/pics/gifs/bkgd.gif'); background-size:cover; background-repeat: repeat;}
     .top
     {
         width: 49vw;
@@ -41,7 +41,7 @@
     }
     .topbar
     {
-        background-image: url("utils/pics/icon.png");
+        background-image: url("/utils/pics/icon.png");
         background-position: left;
         background-repeat: no-repeat;
         background-size: contain;
@@ -99,7 +99,7 @@
         }
     .search
     {
-        background-image: url("utils/fonts/icon.png");
+        background-image: url("/utils/fonts/icon.png");
         background-repeat: no-repeat;
         background-size: contain;
         background-position: right;
@@ -114,7 +114,7 @@
     {
         height: 2vw;
         width: 15vw;
-        background-image: url("utils/fonts/icon.png");
+        background-image: url("/utils/fonts/icon.png");
         background-repeat: no-repeat;
         background-size: contain;
         background-position: right;
@@ -232,7 +232,7 @@
         margin-right: 20vw;
         float: left;
         width: 20vw;
-        height: 2vw;
+        min-height: 2vw;
         background-color: rgb(250, 122, 17);
         font-size: 1.5vw;
         color: black;
@@ -245,8 +245,9 @@
         margin-left: 20vw;
         float: right;
         width: 20vw;
-        height: 2vw;
+        min-height: 2vw;
         font-size: 1.5vw;
+        overflow: hidden;
     }
     .chatbox
     {
