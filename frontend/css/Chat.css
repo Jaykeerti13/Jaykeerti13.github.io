@@ -228,11 +228,12 @@
     }
     .left
     {
+        resize: none;
         margin-bottom: 1vw;
         margin-right: 20vw;
         float: left;
         width: 20vw;
-        height: 2vw;
+        height: fit-content;
         background-color: rgb(250, 122, 17);
         font-size: 1.5vw;
         color: black;
@@ -240,13 +241,14 @@
     }
     .right
     {
+        resize: none;
         color: black;
         background-color: #00eeff;
         margin-bottom: 1vw;
         margin-left: 20vw;
         float: right;
         width: 20vw;
-        height: 2vw;
+        height: fit-content;
         font-size: 1.5vw;        
         word-wrap: break-word;
     }
