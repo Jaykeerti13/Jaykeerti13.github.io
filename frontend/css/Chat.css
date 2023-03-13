@@ -253,6 +253,5 @@
     {
         overflow: auto;
         width: 49vw;
-        min-height: 35vw;
-        overflow: hidden;
+        height: 35vw;
     }
