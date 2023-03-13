@@ -232,7 +232,7 @@
         margin-right: 20vw;
         float: left;
         width: 20vw;
-        min-height: 2vw;
+        height: fit-content;
         background-color: rgb(250, 122, 17);
         font-size: 1.5vw;
         color: black;
@@ -245,7 +245,7 @@
         margin-left: 20vw;
         float: right;
         width: 20vw;
-        min-height: 2vw;
+        height: fit-content;
         font-size: 1.5vw;
         overflow: hidden;
     }
