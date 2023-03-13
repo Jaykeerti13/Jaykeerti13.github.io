@@ -228,8 +228,8 @@ function loadMessages(u)
                     console.log(change.doc.data().message);
                     if(change.doc.data().whose=="1")
                     {
-                        var message=document.createElement("input");
-                        message.type="text";
+                        var message=document.createElement("textarea");
+                        //message.type="text";
                         message.disabled=true;
                         message.id=change.doc.id;
                         message.value=change.doc.data().message;
@@ -239,8 +239,8 @@ function loadMessages(u)
                     }
                     else if(change.doc.data().whose=="0")
                     {
-                        var message=document.createElement("input");
-                        message.type="text";
+                        var message=document.createElement("textarea");
+                        //message.type="text";
                         message.disabled=true;
                         message.id=change.doc.id;
                         message.value=change.doc.data().message;
