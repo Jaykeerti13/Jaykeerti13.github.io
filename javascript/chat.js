@@ -224,8 +224,9 @@ function loadMessages(u)
         {
             snapshot.docChanges().forEach((change)=>{
                 if(change.type=="added")
-                {
-                    console.log(change.doc.data().message);
+                {   
+                    
+                    // To log message :- console.log(change.doc.data().message);
                     if(change.doc.data().whose=="1")
                     {
                         var message=document.createElement("textarea");
